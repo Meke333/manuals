@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="color-scheme"
-          content="light dark" />
     <title>Shader - 3d File Manual</title>
     <style>
         @font-face {
@@ -1261,7 +1259,7 @@
         }
     </style>
 </head>
-<body>
+<body bgcolor = #242026>
   <article class="markdown-body"><h1 class="atx" id="shader--material">Shader / Material</h1>
 <p>This section covers editing materials values in the Shader Editor</p>
 <hr>
@@ -1316,13 +1314,13 @@
 <p>You can view, which value of the shader you edit by looking at the <code>BSDF</code> node (mostly <code>Pricipled BSDF</code> or <code>Diffuse BSDF</code>) near the <code>Material Output</code> node:</p>
 <img data-align="center" alt="" title="" src="assets/shader/images/shader_principledbsdfnode.png">
 
-<p><center><video controls loop><source src="assets/shader/videos/doc_shaderMaterial.mp4" type="video/mp4"></video></center><br><br></p>
+<p><center><video width="80%" controls loop><source src="assets/shader/videos/doc_shaderMaterial.mp4" type="video/mp4"></video></center><br><br></p>
 <h4 class="atx" id="outline-material">Outline Material</h4>
 <p>The last slot of the Material is mostly the <strong>Outline Shader</strong> material.</p>
 <img data-align="center" alt="" title="" src="assets/shader/images/shader_emissionNodes.png">
 
 <p>There you can edit the <code>Emission BSDF</code>'s Color value to change the outline's color.</p>
-<p><center><video controls loop><source src="assets/shader/videos/doc_shaderOutline.mp4" type="video/mp4"></video></center></p>
+<p><center><video width="80%" controls loop><source src="assets/shader/videos/doc_shaderOutline.mp4" type="video/mp4"></video></center></p>
 <p>If you're using <strong>bloom</strong> or a different kind of setup (since Blender 4.2 reworked it's Eevee Render pipeline...) you can also determine the strength of the emission. </p>
 <p><img data-align="center" alt="" title="" src="assets/shader/images/shader_emissionGlow.png"></p>
 </article>

@@ -4,8 +4,6 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="color-scheme"
-              content="light dark" />
         <title>Shader - 3d File Manual</title>
         <style>
             @font-face {
@@ -1261,255 +1259,254 @@
             .markdown-body {
             }
         </style>
-
     </head>
-</div>
-<body>
-    <article class="markdown-body">
-        <h1 class="atx" id="rig">Rig</h1>
-        <p>This section will cover how the mechanics of the rig can be used.</p>
-        <hr>
-        <h5 class="atx" id="table-of-content">Table of Content</h5>
-        <ul>
-            <li>
-                <p><a href="#bone-collections">Bone Collections</a></p>
-            </li>
-            <li>
-                <p><a href="#rig-properties">Rig Properties</a></p>
-            </li>
-            <li>
-                <p><a href="#inverse-vs-forward-kinematics">Inverse vs. Forward Kinematics</a></p>
-                <ul>
-                    <li>
-                        <p><a href="#forward-kinematics-fk">Forward Kinematics (FK)</a></p>
-                    </li>
-                    <li>
-                        <p><a href="#inverse-kinematics-ik">Inverse Kinematics (IK)</a></p>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <p><a href="#switch-between-ik--fk">Switch between IK / FK</a></p>
-            </li>
-            <li>
-                <p><a href="#tail-rig-values">Tail Rig Values</a></p>
-            </li>
-            <li>
-                <p><a href="#pose-library">Pose Library</a></p>
-            </li>
-        </ul>
-        <hr>
-        <h2 class="atx" id="bone-collections">Bone Collections</h2>
-        <p>In order to sort bones together for clarity, the rig has sorted them into bone collections. In the Properties Area, you can view the Bone Collections in the <img alt="" src="file:///D:/Dokumente/Git/MyNotes/Pictures/2025-03-03-16-58-21-image.png"> <code>Data</code> Tab.</p>
-        <p>Bones are sorted in these general categories:</p>
-        <img data-align="center" alt="" title="" src="assets/rig/images/rig_boneCollection.png">
+    </div>
+    <body bgcolor=#242026>
+        <article class="markdown-body">
+            <h1 class="atx" id="rig">Rig</h1>
+            <p>This section will cover how the mechanics of the rig can be used.</p>
+            <hr>
+            <h5 class="atx" id="table-of-content">Table of Content</h5>
+            <ul>
+                <li>
+                    <p><a href="#bone-collections">Bone Collections</a></p>
+                </li>
+                <li>
+                    <p><a href="#rig-properties">Rig Properties</a></p>
+                </li>
+                <li>
+                    <p><a href="#inverse-vs-forward-kinematics">Inverse vs. Forward Kinematics</a></p>
+                    <ul>
+                        <li>
+                            <p><a href="#forward-kinematics-fk">Forward Kinematics (FK)</a></p>
+                        </li>
+                        <li>
+                            <p><a href="#inverse-kinematics-ik">Inverse Kinematics (IK)</a></p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><a href="#switch-between-ik--fk">Switch between IK / FK</a></p>
+                </li>
+                <li>
+                    <p><a href="#tail-rig-values">Tail Rig Values</a></p>
+                </li>
+                <li>
+                    <p><a href="#pose-library">Pose Library</a></p>
+                </li>
+            </ul>
+            <hr>
+            <h2 class="atx" id="bone-collections">Bone Collections</h2>
+            <p>In order to sort bones together for clarity, the rig has sorted them into bone collections. In the Properties Area, you can view the Bone Collections in the <img alt="" src="file:///D:/Dokumente/Git/MyNotes/Pictures/2025-03-03-16-58-21-image.png"> <code>Data</code> Tab.</p>
+            <p>Bones are sorted in these general categories:</p>
+            <img data-align="center" alt="" title="" src="assets/rig/images/rig_boneCollection.png">
 
-        <ol>
-            <li>
-                <p>Body</p>
-                <ol>
-                    <li>
-                        <p>IK-Bones</p>
-                        <p><em>Inverse Kinematic and other Driver Bones for main body parts (e.g.: arms/legs, spine, head, etc.)</em></p>
-                    </li>
-                    <li>
-                        <p>Moveable Bones</p>
-                        <p><em>Forward Kinematic Bones for either main body parts (e.g.: arms/legs) or especially extra body parts (e.g.: hair/floof, fingers, etc.)</em></p>
-                    </li>
-                    <li>
-                        <p>Static Bones</p>
-                        <p><strong>PLEASE REFRAIN FROM DOING ANYTHING IN THIS COLLECTION</strong>. <em>It can result into unwanted results. These bones are controlled by drivers and constraints.</em></p>
-                    </li>
-                </ol>
-            </li>
-            <li>
-                <p>Face</p>
-                <ol>
-                    <li>
-                        <p>FaceRig</p>
-                        <p><strong>PLEASE REFRAIN FROM DOING ANYTHING IN THIS COLLECTION</strong>. <em>It can result into unwanted results. These facial bones are controlled by drivers and constraints.</em></p>
-                    </li>
-                    <li>
-                        <p>Facial Handlers</p>
-                        <p><em>Forward Kinematics Bones for the face</em></p>
-                        <ol>
-                            <li>
-                                <p>Facial Mouth</p>
-                            </li>
-                            <li>
-                                <p>Facial Eyes <br><br></p>
-                            </li>
-                        </ol>
-                    </li>
-                </ol>
-            </li>
-        </ol>
-        <p><em>(Categories can vary on features implemented!)</em> <br><br></p>
-        <p>You can expand or shrink collections like folders to make it more detailed/see inside collections or condensed/see header group as you want.</p>
-        <p>In the Bone Collections section you can toggle the visibility in the Viewport.</p>
-        <p>Either you toggle visibility through </p>
-        <ul>
-            <li>
-                <p><img alt="" src="assets/rig/images/rig_iconVisible.png"> <code>Visible</code> icon </p>
-                <p>for general visibility settings</p>
-                <p><center><video width="850" height="512" controls loop><source src="assets/rig/videos/doc_visibility.mp4" type="video/mp4"></video></center></p>
-            </li>
-            <li>
-                <p><img alt="" src="assets/rig/images/rig_iconStar.png"> <code>Solo</code> icon </p>
-                <p>for picking out single collections</p>
-                <p><center><video width="850" height="512" controls loop><source src="assets/rig/videos/doc_visibilityStar.mp4" type="video/mp4"></videowidth="700"></center> <br><br></p>
-            </li>
-        </ul>
-        <hr>
-        <h2 class="atx" id="rig-properties">Rig Properties</h2>
-        <p>The Rig has some properties relevant for posing. To access them you need to make the <code>Body</code> Bone Collection visible <img alt="" src="file:///D:/Dokumente/Git/MyNotes/Pictures/2025-03-05-19-40-47-image.png"></p>
-        <p>Then on the ground, between the feet of the character there is a bone, which is called ``RIGPROPERTIES` .</p>
-        <img data-align="center" alt="" title="" src="assets/rig/images/rig_bodyCollection.png">
+            <ol>
+                <li>
+                    <p>Body</p>
+                    <ol>
+                        <li>
+                            <p>IK-Bones</p>
+                            <p><em>Inverse Kinematic and other Driver Bones for main body parts (e.g.: arms/legs, spine, head, etc.)</em></p>
+                        </li>
+                        <li>
+                            <p>Moveable Bones</p>
+                            <p><em>Forward Kinematic Bones for either main body parts (e.g.: arms/legs) or especially extra body parts (e.g.: hair/floof, fingers, etc.)</em></p>
+                        </li>
+                        <li>
+                            <p>Static Bones</p>
+                            <p><strong>PLEASE REFRAIN FROM DOING ANYTHING IN THIS COLLECTION</strong>. <em>It can result into unwanted results. These bones are controlled by drivers and constraints.</em></p>
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    <p>Face</p>
+                    <ol>
+                        <li>
+                            <p>FaceRig</p>
+                            <p><strong>PLEASE REFRAIN FROM DOING ANYTHING IN THIS COLLECTION</strong>. <em>It can result into unwanted results. These facial bones are controlled by drivers and constraints.</em></p>
+                        </li>
+                        <li>
+                            <p>Facial Handlers</p>
+                            <p><em>Forward Kinematics Bones for the face</em></p>
+                            <ol>
+                                <li>
+                                    <p>Facial Mouth</p>
+                                </li>
+                                <li>
+                                    <p>Facial Eyes <br><br></p>
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+            <p><em>(Categories can vary on features implemented!)</em> <br><br></p>
+            <p>You can expand or shrink collections like folders to make it more detailed/see inside collections or condensed/see header group as you want.</p>
+            <p>In the Bone Collections section you can toggle the visibility in the Viewport.</p>
+            <p>Either you toggle visibility through </p>
+            <ul>
+                <li>
+                    <p><img alt="" src="assets/rig/images/rig_iconVisible.png"> <code>Visible</code> icon </p>
+                    <p>for general visibility settings</p>
+                    <p><center><video width="80%" controls loop><source src="assets/rig/videos/doc_visibility.mp4" type="video/mp4"></video></center></p>
+                </li>
+                <li>
+                    <p><img alt="" src="assets/rig/images/rig_iconStar.png"> <code>Solo</code> icon </p>
+                    <p>for picking out single collections</p>
+                    <p><center><video width="90%" controls loop><source src="assets/rig/videos/doc_visibilityStar.mp4" type="video/mp4"></videowidth="700"></center> <br><br></p>
+                </li>
+            </ul>
+            <hr>
+            <h2 class="atx" id="rig-properties">Rig Properties</h2>
+            <p>The Rig has some properties relevant for posing. To access them you need to make the <code>Body</code> Bone Collection visible <img alt="" src="file:///D:/Dokumente/Git/MyNotes/Pictures/2025-03-05-19-40-47-image.png"></p>
+            <p>Then on the ground, between the feet of the character there is a bone, which is called ``RIGPROPERTIES` .</p>
+            <img data-align="center" alt="" title="" src="assets/rig/images/rig_bodyCollection.png">
 
-        <img data-align="center" alt="" title="" src="assets/rig/images/rig_propertiesBone.png"><br>
-        <img data-align="center" alt="" title="" src="assets/rig/images/rig_PropertiesBoneStatistic.png"> <br>
-        <p>On the Settings tab (if you don't see it, press [N]), under <code>Item</code>, under the 'Transform' section there is a <strong>'Properties'</strong> section. Expand it to see the options awailable.</p>
-        <img data-align="center" alt="" title="" src="assets/rig/images/rig_propertiesTab.png">
+            <img data-align="center" alt="" title="" src="assets/rig/images/rig_propertiesBone.png"><br>
+            <img data-align="center" alt="" title="" src="assets/rig/images/rig_PropertiesBoneStatistic.png"> <br>
+            <p>On the Settings tab (if you don't see it, press [N]), under <code>Item</code>, under the 'Transform' section there is a <strong>'Properties'</strong> section. Expand it to see the options awailable.</p>
+            <img data-align="center" alt="" title="" src="assets/rig/images/rig_propertiesTab.png">
 
-        <p>What these options are, will be explained in the next sections accordingly.</p>
-        <hr>
-        <h2 class="atx" id="inverse-vs-forward-kinematics">Inverse vs. Forward Kinematics</h2>
-        <p>In Rigs you will encounter the topic of Kinematics. The main two ones you will definitely encounter is the question of using Forward or Inverse Kinematics. It is important to know the basics of these two ways of movement beforehand. Additionally this manual will point out, where and how the kinematics can be used for the rigs.</p>
-        <h4 class="atx" id="forward-kinematics-fk">Forward Kinematics (FK)</h4>
-        <p><u>Basics:</u></p>
-        <p>Imagine waving your arm, swinging your legs forward and backward like a pendulum or just giving someone a good punching hook. Most of these motions use arch-like movements commonly, which falls into forward kinematics. </p>
-        <p>FK uses an hierarchical system, in which the rotation of a parent bone affects the child bones position and rotation.</p>
-        <p>
-            For example: Imagine three points to visualize on your arm: Shoulder, Elbow, Hand.
-            If you wave your arm, the shoulder begins to rotate, this <strong>will</strong> move the elbow's and, along with that, the hand's position.
-            However, rotating your hand alone does <strong>not</strong> move the elbow, let alone the shoulder.
-            <center><video width="814" height="482" controls loop><source src="assets/rig/videos/doc_fkExplanation.mp4" type="video/mp4"></video></center>
-        </p>
-        <p>Makes sense: The hand is connected to the elbow, which is connected to the shoulder. So every movement/rotation of the shoulder affects every other parts of the limb. <strong>Not vice versa</strong>! Meaning a hierachy exists:</p>
-        <ol>
-            <li>
-                <p>Shoulder</p>
-            </li>
-            <li>
-                <p>Elbow</p>
-            </li>
-            <li>
-                <p>Hand</p>
-            </li>
-        </ol>
-        <p>This is the core concept, <strong>important</strong> to keep in mind! Use FK, when you want to pose/animate an arch-like movement.<br><br></p>
-        <p><u>Rig Example:</u></p>
-        <p>When you want to pose a FK-pose, you need to determine, <strong>how</strong> to rotate the hierarchical parent bone, in order to achieve a specific pose and then <strong>continue down the chain</strong>. Here is an example of posing a leg with the FK rig:</p>
-        <p><center><video width="882" height="644" controls loop><source src="assets/rig/videos/doc_values_FK_leg.mp4" type="video/mp4"></video></center> <br><br></p>
-        <p><u>FK-Bones:</u></p>
-        <p>Visually, besides the normal Blender bones, these Bones are meant to implement Forward Kinematics. In other words, bones to <strong>rotate only</strong>. For Example these forms:</p>
-        <p><img data-align="center" alt="" title="" src="assets/rig/images/rig_fkBone2.png"><img data-align="center" width="387" alt="" src="assets/rig/images/rig_fkBone1.png" title=""></p>
-        <p>The axis shown in the images, are indicators for the orientation of the bone. All Standard FK-Bones have the default white-grey color.<br><br></p>
-        <h4 class="atx" id="inverse-kinematics-ik">Inverse Kinematics (IK)</h4>
-        <p><u>Basics:</u></p>
-        <p>With FK alone, the process of posing is going to be tedious. Remember you need to pose a limb down a hierarchy chain, meaning slight changes in parent bones affects all the child bones. Frustrating when you have to align something to a specific place. If there was something that <em>inverses</em> the order of the hierarchy...</p>
-        <p>Imagine reaching something with a hand, moving your foot directly up or throwing a straight punch. These movements use targets to move a certain part of the body in a specific location, while the rest of the limb adapts with the motion accordingly.</p>
-        <p><strong>IK</strong> allows you to use the <strong>last bone</strong> in the hierarchy and <strong>intuitively/efficiently move</strong> it to a desired location (while the other bones of the limbs calculate their angles to adjust to that bone). That renders the hierarchy of the FK invalid, which in most rigs means, that you <strong>can't rotate</strong> the parent bones that are affected by IK. </p>
-        <p><center><video width="814" height="482" controls loop><source src="assets/rig/videos/doc_ikExplanation.mp4" type="video/mp4"></video></center></p>
-        <p>In order to give more control in the <strong>rotation of the limb</strong>, we have <strong>pole bones</strong>.</p>
-        <p><center><video width="604" height="480" controls loop><source src="assets/rig/videos/doc_ikPole.mp4" type="video/mp4"></video></center> <br><br></p>
-        <p><u>Rig Example:</u></p>
-        <p>When you want to pose an IK-pose, you need to determine <strong>where</strong> a certain part of the body you want to be and consider <strong>where</strong> to put the pole bone to adjust the limb accordingly. Here is an example of posing a leg with the IK rig:</p>
-        <p><center><video width="882" height="644" controls loop><source src="assets/rig/videos/doc_values_IK_leg.mp4" type="video/mp4"></video></center>  <br><br></p>
-        <p><u>IK-Bones:</u></p>
-        <p>Visually and mechanically, these Bones are meant to implement Inverse Kinematics or other Driver Mechanics (e.g.: head &amp; eye look target). In other words, bones to <strong>move and rotate</strong>. For Example these forms:</p>
-        <ul>
-            <li>
-                <p>Pole-Bones: Either as an pole for IKs or a target point</p>
-                <img data-align="center" alt="" src="assets/rig/images/rig_ikBonePole.png" title="">
-            </li>
-            <li>
-                <p>
-                    Main IK-Bone: Cube-like shape for main IK operations
-                    <img data-align="center" alt="" title="" src="assets/rig/images/rig_ikBone1.png"><img data-align="center" alt="" title="" src="assets/rig/images/rig_ikBone2.png">
-                </p>
-            </li>
-        </ul>
-        <p>The axis shown in the images, are indicators for the orientation of the bone.</p>
-        <p>IK Bones only have these specific colors:</p>
-        <ul>
-            <li>
-                <p>🔴 Red: Standard IK Bone</p>
-            </li>
-            <li>
-                <p>🟡 Yellow Left IK Bone</p>
-            </li>
-            <li>
-                <p>🔵 Blue: Right IK Bone<br><br></p>
-            </li>
-        </ul>
-        <h2 class="atx" id="switch-between-ik--fk">Switch between IK / FK</h2>
-        <p>Now that you know what IK and FK is (or at least have gotten the gist of it), you need to know how to toggle between them.</p>
-        <p>Go to the Properties of the Rig (Select RIGPROPERTIES BONE &gt; Sidebar &gt; Item &gt; Properties). There you can individually toggle between the IK (value: 0) and FK (value: 1) of the part of the rig.</p>
-        <img data-align="center" alt="" title="" src="assets/rig/images/rig_propertiesIKFK.png">
+            <p>What these options are, will be explained in the next sections accordingly.</p>
+            <hr>
+            <h2 class="atx" id="inverse-vs-forward-kinematics">Inverse vs. Forward Kinematics</h2>
+            <p>In Rigs you will encounter the topic of Kinematics. The main two ones you will definitely encounter is the question of using Forward or Inverse Kinematics. It is important to know the basics of these two ways of movement beforehand. Additionally this manual will point out, where and how the kinematics can be used for the rigs.</p>
+            <h4 class="atx" id="forward-kinematics-fk">Forward Kinematics (FK)</h4>
+            <p><u>Basics:</u></p>
+            <p>Imagine waving your arm, swinging your legs forward and backward like a pendulum or just giving someone a good punching hook. Most of these motions use arch-like movements commonly, which falls into forward kinematics. </p>
+            <p>FK uses an hierarchical system, in which the rotation of a parent bone affects the child bones position and rotation.</p>
+            <p>
+                For example: Imagine three points to visualize on your arm: Shoulder, Elbow, Hand.
+                If you wave your arm, the shoulder begins to rotate, this <strong>will</strong> move the elbow's and, along with that, the hand's position.
+                However, rotating your hand alone does <strong>not</strong> move the elbow, let alone the shoulder.
+                <center><video width="90%" controls loop><source src="assets/rig/videos/doc_fkExplanation.mp4" type="video/mp4"></video></center>
+            </p>
+            <p>Makes sense: The hand is connected to the elbow, which is connected to the shoulder. So every movement/rotation of the shoulder affects every other parts of the limb. <strong>Not vice versa</strong>! Meaning a hierachy exists:</p>
+            <ol>
+                <li>
+                    <p>Shoulder</p>
+                </li>
+                <li>
+                    <p>Elbow</p>
+                </li>
+                <li>
+                    <p>Hand</p>
+                </li>
+            </ol>
+            <p>This is the core concept, <strong>important</strong> to keep in mind! Use FK, when you want to pose/animate an arch-like movement.<br><br></p>
+            <p><u>Rig Example:</u></p>
+            <p>When you want to pose a FK-pose, you need to determine, <strong>how</strong> to rotate the hierarchical parent bone, in order to achieve a specific pose and then <strong>continue down the chain</strong>. Here is an example of posing a leg with the FK rig:</p>
+            <p><center><video width="90%" controls loop><source src="assets/rig/videos/doc_values_FK_leg.mp4" type="video/mp4"></video></center> <br><br></p>
+            <p><u>FK-Bones:</u></p>
+            <p>Visually, besides the normal Blender bones, these Bones are meant to implement Forward Kinematics. In other words, bones to <strong>rotate only</strong>. For Example these forms:</p>
+            <p><img data-align="center" alt="" title="" src="assets/rig/images/rig_fkBone2.png"><img data-align="center" width="387" alt="" src="assets/rig/images/rig_fkBone1.png" title=""></p>
+            <p>The axis shown in the images, are indicators for the orientation of the bone. All Standard FK-Bones have the default white-grey color.<br><br></p>
+            <h4 class="atx" id="inverse-kinematics-ik">Inverse Kinematics (IK)</h4>
+            <p><u>Basics:</u></p>
+            <p>With FK alone, the process of posing is going to be tedious. Remember you need to pose a limb down a hierarchy chain, meaning slight changes in parent bones affects all the child bones. Frustrating when you have to align something to a specific place. If there was something that <em>inverses</em> the order of the hierarchy...</p>
+            <p>Imagine reaching something with a hand, moving your foot directly up or throwing a straight punch. These movements use targets to move a certain part of the body in a specific location, while the rest of the limb adapts with the motion accordingly.</p>
+            <p><strong>IK</strong> allows you to use the <strong>last bone</strong> in the hierarchy and <strong>intuitively/efficiently move</strong> it to a desired location (while the other bones of the limbs calculate their angles to adjust to that bone). That renders the hierarchy of the FK invalid, which in most rigs means, that you <strong>can't rotate</strong> the parent bones that are affected by IK. </p>
+            <p><center><video width="90%" controls loop><source src="assets/rig/videos/doc_ikExplanation.mp4" type="video/mp4"></video></center></p>
+            <p>In order to give more control in the <strong>rotation of the limb</strong>, we have <strong>pole bones</strong>.</p>
+            <p><center><video width="90%" controls loop><source src="assets/rig/videos/doc_ikPole.mp4" type="video/mp4"></video></center> <br><br></p>
+            <p><u>Rig Example:</u></p>
+            <p>When you want to pose an IK-pose, you need to determine <strong>where</strong> a certain part of the body you want to be and consider <strong>where</strong> to put the pole bone to adjust the limb accordingly. Here is an example of posing a leg with the IK rig:</p>
+            <p><center><video width="90%" controls loop><source src="assets/rig/videos/doc_values_IK_leg.mp4" type="video/mp4"></video></center>  <br><br></p>
+            <p><u>IK-Bones:</u></p>
+            <p>Visually and mechanically, these Bones are meant to implement Inverse Kinematics or other Driver Mechanics (e.g.: head &amp; eye look target). In other words, bones to <strong>move and rotate</strong>. For Example these forms:</p>
+            <ul>
+                <li>
+                    <p>Pole-Bones: Either as an pole for IKs or a target point</p>
+                    <img data-align="center" alt="" src="assets/rig/images/rig_ikBonePole.png" title="">
+                </li>
+                <li>
+                    <p>
+                        Main IK-Bone: Cube-like shape for main IK operations
+                        <img data-align="center" alt="" title="" src="assets/rig/images/rig_ikBone1.png"><img data-align="center" alt="" title="" src="assets/rig/images/rig_ikBone2.png">
+                    </p>
+                </li>
+            </ul>
+            <p>The axis shown in the images, are indicators for the orientation of the bone.</p>
+            <p>IK Bones only have these specific colors:</p>
+            <ul>
+                <li>
+                    <p>🔴 Red: Standard IK Bone</p>
+                </li>
+                <li>
+                    <p>🟡 Yellow Left IK Bone</p>
+                </li>
+                <li>
+                    <p>🔵 Blue: Right IK Bone<br><br></p>
+                </li>
+            </ul>
+            <h2 class="atx" id="switch-between-ik--fk">Switch between IK / FK</h2>
+            <p>Now that you know what IK and FK is (or at least have gotten the gist of it), you need to know how to toggle between them.</p>
+            <p>Go to the Properties of the Rig (Select RIGPROPERTIES BONE &gt; Sidebar &gt; Item &gt; Properties). There you can individually toggle between the IK (value: 0) and FK (value: 1) of the part of the rig.</p>
+            <img data-align="center" alt="" title="" src="assets/rig/images/rig_propertiesIKFK.png">
 
-        <ul>
-            <li>
-                <p>L IK/FK ARM: Left Arm's IK/FK Toggle</p>
-            </li>
-            <li>
-                <p>L IK/FK LEG: Left Leg's IK/FK Toggle</p>
-            </li>
-            <li>
-                <p>R IK/FK ARM: Right Arm's IK/FK Toggle</p>
-            </li>
-            <li>
-                <p>R IK/FK LEG: Right Leg's IK/FK Toggle <br><br></p>
-            </li>
-        </ul>
-        <p>Here is an example for toggling between the Left Arm's FK/IK functionality:</p>
-        <p><center><video width="882" height="644" controls loop><source src="assets/rig/videos/doc_values_IK_FK_armSwitch.mp4" type="video/mp4"></video></center> </p>
-        <hr>
-        <h2 class="atx" id="tail-rig-values">Tail Rig Values</h2>
-        <p>If your model has a tail, then most probably the rig has a tail rig and additionally mechanisms for smooth tail waggling.</p>
-        <img data-align="center" alt="" title="" src="assets/rig/images/rig_propertiesTail.png">
+            <ul>
+                <li>
+                    <p>L IK/FK ARM: Left Arm's IK/FK Toggle</p>
+                </li>
+                <li>
+                    <p>L IK/FK LEG: Left Leg's IK/FK Toggle</p>
+                </li>
+                <li>
+                    <p>R IK/FK ARM: Right Arm's IK/FK Toggle</p>
+                </li>
+                <li>
+                    <p>R IK/FK LEG: Right Leg's IK/FK Toggle <br><br></p>
+                </li>
+            </ul>
+            <p>Here is an example for toggling between the Left Arm's FK/IK functionality:</p>
+            <p><center><video width="90%" controls loop><source src="assets/rig/videos/doc_values_IK_FK_armSwitch.mp4" type="video/mp4"></video></center> </p>
+            <hr>
+            <h2 class="atx" id="tail-rig-values">Tail Rig Values</h2>
+            <p>If your model has a tail, then most probably the rig has a tail rig and additionally mechanisms for smooth tail waggling.</p>
+            <img data-align="center" alt="" title="" src="assets/rig/images/rig_propertiesTail.png">
 
-        <p><center><video width="882" height="564" controls loop><source src="assets/rig/videos/doc_tailDamp.mp4" type="video/mp4"></video></center> </p>
-        <ul>
-            <li>
-                <p>Tail Damped Amount: Damping Amount of the tail's rig </p>
-                <ul>
-                    <li>
-                        <p>0 means tail behaves stiff and completely follows the root's rotation </p>
-                    </li>
-                    <li>
-                        <p>1 means tail behaves loose and completely neglegts the root's rotation<br><br></p>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <p>Tail Damped IK: Percentage of how much the tail follows the IK and lessens the tail damp</p>
-                <ul>
-                    <li>
-                        <p>0 means tail will follow the IK and tail damp will be added on top of it</p>
-                    </li>
-                    <p>1 means tail will strictly follow the IK and tail damp is no more<br><br></p>
-            </li>
-        </ul>
-        </ul>
-        <p><center><video width="876" height="584" controls loop loop><source src="assets/rig/videos/doc_tailDampedIK.mp4" type="video/mp4"></video></center><br><br></p>
+            <p><center><video width="90%" controls loop><source src="assets/rig/videos/doc_tailDamp.mp4" type="video/mp4"></video></center> </p>
+            <ul>
+                <li>
+                    <p>Tail Damped Amount: Damping Amount of the tail's rig </p>
+                    <ul>
+                        <li>
+                            <p>0 means tail behaves stiff and completely follows the root's rotation </p>
+                        </li>
+                        <li>
+                            <p>1 means tail behaves loose and completely neglegts the root's rotation<br><br></p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>Tail Damped IK: Percentage of how much the tail follows the IK and lessens the tail damp</p>
+                    <ul>
+                        <li>
+                            <p>0 means tail will follow the IK and tail damp will be added on top of it</p>
+                        </li>
+                        <p>1 means tail will strictly follow the IK and tail damp is no more<br><br></p>
+                </li>
+            </ul>
+            </ul>
+            <p><center><video width="90%" controls loop loop><source src="assets/rig/videos/doc_tailDampedIK.mp4" type="video/mp4"></video></center><br><br></p>
 
 
-        <ul>
-        <li>
-            <p>Tail IK/FK: Tail's IK/FK Toggle <br><br></p>
-        </li>
-        </ul>
-        <p>In order to utilize the tail damp you only need to rotate the <strong>tail's root bone</strong> (you can also rotate the other parts if you so desire)</p>
-        <hr>
-        <h2 class="atx" id="pose-library">Pose Library</h2>
-        <p>Some Rigs have poses stored in a <strong>Pose Library</strong>. In order to access them you need to go to the <strong>Asset Browser</strong> window. <img alt="" src="file:///D:/Dokumente/Git/MyNotes/Pictures/2025-03-05-19-19-05-image.png"> (Shortcut: <strong>[Shift] + [F1]</strong>)</p>
-        <img data-align="center" alt="" title="" src="assets/rig/images/rig_poselibAssetBrowser.png">
+            <ul>
+                <li>
+                    <p>Tail IK/FK: Tail's IK/FK Toggle <br><br></p>
+                </li>
+            </ul>
+            <p>In order to utilize the tail damp you only need to rotate the <strong>tail's root bone</strong> (you can also rotate the other parts if you so desire)</p>
+            <hr>
+            <h2 class="atx" id="pose-library">Pose Library</h2>
+            <p>Some Rigs have poses stored in a <strong>Pose Library</strong>. In order to access them you need to go to the <strong>Asset Browser</strong> window. <img alt="" src="file:///D:/Dokumente/Git/MyNotes/Pictures/2025-03-05-19-19-05-image.png"> (Shortcut: <strong>[Shift] + [F1]</strong>)</p>
+            <img data-align="center" alt="" title="" src="assets/rig/images/rig_poselibAssetBrowser.png">
 
-        <p>Usually if there is a pose library, only <em>face poses</em> are saved there. </p>
-        <p>In order to use them you need to <strong>select the wanted bones</strong> that needs changes. Best practice is to select bones from the corresponding bone collections.</p>
-        <p><img data-align="center" alt="" title="" src="assets/rig/images/rig_poselibBoneCollection.png"><img data-align="center" alt="" title="" src="assets/rig/images/rig_poselibSelected.png"></p>
-        <p>Select each of the Collection you want to select (make sure they are visible) and press the <code>Select</code> button, then you can <strong>double click</strong> the pose in the Asset Browser and the selected bones of the rig will copy the saved pose asset.</p>
-    </article>
-</body>
+            <p>Usually if there is a pose library, only <em>face poses</em> are saved there. </p>
+            <p>In order to use them you need to <strong>select the wanted bones</strong> that needs changes. Best practice is to select bones from the corresponding bone collections.</p>
+            <p><img data-align="center" alt="" title="" src="assets/rig/images/rig_poselibBoneCollection.png"><img data-align="center" alt="" title="" src="assets/rig/images/rig_poselibSelected.png"></p>
+            <p>Select each of the Collection you want to select (make sure they are visible) and press the <code>Select</code> button, then you can <strong>double click</strong> the pose in the Asset Browser and the selected bones of the rig will copy the saved pose asset.</p>
+        </article>
+    </body>
 </html>
